@@ -1,0 +1,65 @@
+.container__left {
+	width: 50%;
+	height: 100%;
+	color: white;
+	background-color: rgb(33, 43, 54);
+	position: fixed;
+	left: 0;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.div__logo {
+	padding: 5px 20px;
+	width: 100%;
+}
+
+.div__player {
+	position: absolute;
+	width: 60%;
+	height: 60%;
+	top: 25%;
+	right: 80%;
+	left: 20%;
+}
+
+.container__right {
+	width: 50%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	color: white;
+	background-color: rgb(25, 32, 41);
+	right: 0;
+}
+
+.login {
+	position: absolute;
+	top: 28%;
+	left: 50%;
+	right: 50%;
+	width: 70%;
+	height: 70%;
+}
+
+.login__image {
+	position: absolute;
+	top: 2%;
+	right: 80%;
+	width: 35%;
+	height: 35%;
+	overflow: hidden;
+	border-radius: 12px;
+}
+
+.image__42 {
+	border-radius: "30px";
+}
+
+.login__button {
+	position: absolute;
+	top: 40%;
+	right: 15%;
+	width: 100%;
+	
+}
