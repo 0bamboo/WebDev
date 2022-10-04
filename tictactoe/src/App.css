@@ -1,0 +1,24 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.first{
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.second {
+  background-color: beige;
+  cursor: pointer;
+}
