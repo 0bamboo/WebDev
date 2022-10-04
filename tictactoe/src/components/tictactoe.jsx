@@ -87,6 +87,7 @@ export default function T_t_t() {
 	const [square, setSquares] = useState(
 		() => JSON.parse(window.localStorage.getItem('squares')) ||
 	Array(9).fill(null));
+
 	const nextVal  = whatIsTheNextVal(square);
 	const winner = getTheWinner(square);
 
@@ -111,7 +112,7 @@ export default function T_t_t() {
 		]
 		for (let i = 0; i < lines.length; i++)
 		{
-			const [a,b,c] =lines[i]
+			const [a,b,c] = lines[i]
 			if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
 				return (squares[a])
 		}
@@ -159,7 +160,7 @@ export default function T_t_t() {
 					</StyledLine>
 				</StyledBox>
 				<StyledStatus>
-					<Styledwin> STATUS: {winner ? `{winner} wins`: `next move {nextval}`} </Styledwin>
+					<Styledwin> STATUS: {winner ? `${winner} wins`: `next move ${nextVal}`} </Styledwin>
 					<button style={{width: "100px", height: "40px", fontWeight: "600"}} onClick={() => { setSquares(Array(9).fill(null))}}>RESTART</button>
 				</StyledStatus>
 			</StyledTicTacToe>
