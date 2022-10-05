@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useLocalStorageState } from "../customHooks/customhook";
 
 // const StyledDiv = styled.div`
 // 	width: 50%;
@@ -21,8 +22,8 @@ import styled from "styled-components";
 // 	cursor: pointer;
 // `;
 const StyledTicTacToe = styled.div`
-	width: 50%;
-	height:50%;
+	width: 800px;
+	height: 700px;
 	background-color: black;
 	display: flex;
 	flex-direction: column;
@@ -33,6 +34,7 @@ const StyledTicTacToe = styled.div`
 const StyledHeader = styled.div`
 	background-color: black;
 	color: white;
+	font-size: 70px;
 	font-weight: 300;
 	display: flex;
 	align-items: center;
@@ -40,10 +42,18 @@ const StyledHeader = styled.div`
 `;
 
 const StyledBox = styled.div`
-	margin-top: 50px;
+	/* margin-top: 50px; */
 	width: 50%;
 	height: 50%;
 	// border: 1px solid white;
+`;
+
+const Wrapper = styled.div`
+	display: flex;
+	width: 100%;
+	height: 70%;
+	justify-content: space-evenly;
+	align-items: center;
 `;
 
 const StyledLine = styled.div`
@@ -53,6 +63,52 @@ const StyledLine = styled.div`
 	display: flex;
 	
 `;
+
+const History = styled.div`
+	width: 30%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+`;
+
+const HistoryHeader = styled.h3`
+	font-weight: 300;
+	font-size: 22px;
+	color: white;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 5px;
+`
+const Historycontent  = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	height: 200px;
+	overflow: auto;
+	/* background-color: white; */
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+`
+
+const HistoryButton = styled.button`
+	margin: 0;
+	padding: 0;
+	width:60%;
+	height:20px;
+	color: black;
+	background-color: grey;
+	border: 1px solid black;
+	border-radius: 12px;
+	cursor: pointer;
+	margin-bottom: 4px;
+`
 
 const StyledButton = styled.button`
 	border: 1px solid white;
@@ -84,16 +140,20 @@ const Styledwin = styled.div`
 	font-size: 20px;
 `;
 export default function T_t_t() {
-	const [square, setSquares] = useState(
-		() => JSON.parse(window.localStorage.getItem('squares')) ||
-	Array(9).fill(null));
-
+	// const [square, setSquares] = useState(
+	// 	() => JSON.parse(window.localStorage.getItem('squares')) ||
+	// Array(9).fill(null));
+	
+	// const [history, setHistory] = useState([Array(9).fill(null)])
+	const [history, setHistory] = useLocalStorageState('tictactoe-history', [Array(9).fill(null)])
+	const [currentStep, setCurrStep] = useLocalStorageState('tictactoe-step', 0)
+	// const [currentStep, setCurrStep] = useState(0)
+	
+	// const [an, setSom] = useLocalStorageState('som', "hello")
+	const square = history[currentStep]
 	const nextVal  = whatIsTheNextVal(square);
 	const winner = getTheWinner(square);
-
-	useEffect(() => {
-		window.localStorage.setItem('squares', JSON.stringify(square))
-	}, [square])
+	
 
 	function whatIsTheNextVal(sq){
 		return (sq.filter(Boolean).length % 2 === 0 ? "X": "O")
@@ -120,13 +180,14 @@ export default function T_t_t() {
 	}
 
 	function fillSquare(index){
-		if (square[index])
+		if (winner || square[index])
 			return ;
 		const copy = [...square]
+		const his = history.slice(0, currentStep + 1)
 		copy[index] = nextVal
-		setSquares(copy)
-		// setNextVal(whatIsTheNextVal(copy))
-		console.log(square[index])
+		setHistory([...his, copy])
+		setCurrStep(his.length)
+
 	}
 
 	function selectSquare(index){
@@ -137,31 +198,47 @@ export default function T_t_t() {
 			</StyledButton>
 		)
 	}
+	const moves = history.map((stepSquare, step)=>{
+		const content = !step ? "Go to game start": `Go to move #${step}`
+		const isCurrStep = step === currentStep
+		console.log("hell-> ",isCurrStep)
+		return (
+			<HistoryButton disabled={isCurrStep} key={step} onClick={()=> setCurrStep(step)}>{content} {isCurrStep ? '(current)':null}</HistoryButton>
+		)
+	})
 
 	return (
 		<>
 			<StyledTicTacToe>
 				<StyledHeader> TIC-TAC-TOE</StyledHeader>
-				<StyledBox>
-					<StyledLine>
-						{selectSquare(0)}
-						{selectSquare(1)}
-						{selectSquare(2)}
-					</StyledLine>
-					<StyledLine>
-						{selectSquare(3)}
-						{selectSquare(4)}
-						{selectSquare(5)}
-					</StyledLine>
-					<StyledLine>
-						{selectSquare(6)}
-						{selectSquare(7)}
-						{selectSquare(8)}
-					</StyledLine>
-				</StyledBox>
+				<Wrapper>
+					<StyledBox>
+						<StyledLine>
+							{selectSquare(0)}
+							{selectSquare(1)}
+							{selectSquare(2)}
+						</StyledLine>
+						<StyledLine>
+							{selectSquare(3)}
+							{selectSquare(4)}
+							{selectSquare(5)}
+						</StyledLine>
+						<StyledLine>
+							{selectSquare(6)}
+							{selectSquare(7)}
+							{selectSquare(8)}
+						</StyledLine>
+					</StyledBox>
+					<History>
+						<HistoryHeader>History:</HistoryHeader>
+						<Historycontent>
+							{moves}
+						</Historycontent>
+					</History>
+				</Wrapper>
 				<StyledStatus>
-					<Styledwin> STATUS: {winner ? `${winner} wins`: `next move ${nextVal}`} </Styledwin>
-					<button style={{width: "100px", height: "40px", fontWeight: "600"}} onClick={() => { setSquares(Array(9).fill(null))}}>RESTART</button>
+					<Styledwin> STATUS:{winner ? `${winner} wins`: square.every(Boolean) ? 'Draw' : `next move ${nextVal}`} </Styledwin>
+					<button style={{width: "100px", height: "40px", fontWeight: "600"}} onClick={() => { setHistory([Array(9).fill(null)]); setCurrStep(0)}}>RESTART</button>
 				</StyledStatus>
 			</StyledTicTacToe>
 		</>
