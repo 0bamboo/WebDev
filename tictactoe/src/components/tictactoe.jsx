@@ -201,7 +201,7 @@ export default function T_t_t() {
 	const moves = history.map((stepSquare, step)=>{
 		const content = !step ? "Go to game start": `Go to move #${step}`
 		const isCurrStep = step === currentStep
-		console.log("hell-> ",isCurrStep)
+		// console.log("hell-> ",isCurrStep)
 		return (
 			<HistoryButton disabled={isCurrStep} key={step} onClick={()=> setCurrStep(step)}>{content} {isCurrStep ? '(current)':null}</HistoryButton>
 		)

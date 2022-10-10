@@ -1,0 +1,56 @@
+{
+	"posts": [
+	{
+		"id": 1,
+		"name": "Brogy",
+		"title": "My first post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 2,
+		"name": "Hrogy",
+		"title": "My second post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 3,
+		"name": "Srogy",
+		"title": "My third post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 4,
+		"name": "Jrogy",
+		"title": "My fourth post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	}
+
+],
+	"notposts": [
+	{
+		"id": 1,
+		"name": "Brogy",
+		"title": "My first post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 2,
+		"name": "Hrogy",
+		"title": "My second post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 3,
+		"name": "Srogy",
+		"title": "My third post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	},
+	{
+		"id": 4,
+		"name": "Jrogy",
+		"title": "My fourth post",
+		"datetime": "July 01, 2021 2:23:33 AM"
+	}
+
+]
+}
