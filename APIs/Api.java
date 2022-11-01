@@ -1,9 +1,5 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
+import java.io.*;
 
 class SuperApi {
 	int cons = 3;
@@ -90,6 +86,11 @@ class Api extends SuperApi {
 		new_api.something();
 		super.doSomething();
 		System.out.println(super.cons);
+	}
+	static // Static block
+	{
+
+		System.out.println("------------------");
 	}
 
 	public static void main(String[] args) {
@@ -186,7 +187,9 @@ class Api extends SuperApi {
 			System.out.println(item);
 
 
-
+/**
+	[{({{}})}]
+ */
 
 
 		// Wrapper  Classes : 
@@ -198,6 +201,10 @@ class Api extends SuperApi {
 		System.out.println(myInt.toString().length());
 		System.out.println(myDouble.toString().length());
 		System.out.println(myChar.toString().length());
+		Scanner scanner = new Scanner(System.in);
+		String scannerData = scanner.nextLine();
+		String imconfused = "hihi";
+		System.out.println("-----> "+ scannerData);
 
 		int[] testException = {1,2,3,4};
 		try {
@@ -211,4 +218,4 @@ class Api extends SuperApi {
 
 
 	}
-}`
+}
