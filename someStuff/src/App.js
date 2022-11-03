@@ -11,7 +11,7 @@ function App() {
 			{/* <T_t_t /> */}
 			{/* <Fetch/> */}
 			{/* <TestUseRef/> */}
-			<DoNothing/>
+			{/* <DoNothing/> */}
 		</div>
 	);
 }
