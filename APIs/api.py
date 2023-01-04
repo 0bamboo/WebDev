@@ -1,1 +1,0 @@
-print("CHOF FMOK 0.0 ")
